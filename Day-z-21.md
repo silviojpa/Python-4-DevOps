@@ -2,27 +2,30 @@
 O Prometheus é um sistema open-source de monitoramento e alertas. Ele coleta e armazena métricas como séries temporais, ou seja, as métricas são acompanhadas do timestamp em que foram gravadas e de pares chave-valor chamados rótulos (labels).
 
 1. Conceitos Fundamentais
-Séries Temporais: A métrica em si (cpu_usage), o valor, o timestamp e os rótulos (ex: instance="web-01", environment="prod").
+   
+- Séries Temporais: A métrica em si (`cpu_usage`), o valor, o timestamp e os rótulos (ex: `instance="web-01"`, `environment="prod"`).
 
-Pull Model: Diferente de outros sistemas, o Prometheus puxa as métricas das aplicações em intervalos definidos, acessando endpoints HTTP expostos pelas próprias aplicações (geralmente /metrics).
+- Pull Model: Diferente de outros sistemas, o Prometheus puxa as métricas das aplicações em intervalos definidos, acessando endpoints HTTP expostos pelas próprias aplicações (geralmente /metrics).
 
-Exporters: Serviços intermediários que convertem métricas de sistemas não nativos (como bancos de dados, servidores de SO) para o formato Prometheus.
+- Exporters: Serviços intermediários que convertem métricas de sistemas não nativos (como bancos de dados, servidores de SO) para o formato Prometheus.
 
-PromQL: A poderosa linguagem de consulta do Prometheus, usada para fazer cálculos, agregações e análises nas séries temporais.
+- PromQL: A poderosa linguagem de consulta do Prometheus, usada para fazer cálculos, agregações e análises nas séries temporais.
 
 2. Python como Exporter de Métricas
+   
 O Python tem uma biblioteca excelente para expor métricas no formato que o Prometheus entende. Este é o ponto crucial de integração.
 
 Instalação:
 
-Bash
+````Bash
 
 pip install prometheus_client
-Exemplo de Script Python (app_with_metrics.py):
+````
+Exemplo de Script Python (`app_with_metrics.py`):
 
 Vamos criar um pequeno servidor web Python que expõe duas métricas personalizadas: um contador e um medidor (gauge).
 
-Python
+````Python
 
 from prometheus_client import start_http_server, Counter, Gauge
 import random
@@ -71,13 +74,15 @@ if __name__ == '__main__':
     while True:
         process_request('/')
         process_request('/api/v1/data')
+````
 3. Verificando as Métricas
-Rode o script Python: python app_with_metrics.py
+   
+Rode o script Python: `python app_with_metrics.py`
 
-Abra seu navegador e acesse: http://localhost:8000/metrics
+Abra seu navegador e acesse: `http://localhost:8000/metrics`
 
 Você verá a saída das métricas no formato Prometheus:
-
+````
 # HELP app_http_requests_total Total de requisições HTTP para a aplicação
 # TYPE app_http_requests_total counter
 app_http_requests_total{endpoint="/"} 35.0
@@ -86,10 +91,11 @@ app_http_requests_total{endpoint="/api/v1/data"} 34.0
 # TYPE app_queue_size gauge
 app_queue_size 7.0 
 ...
+````
 4. Configurando o Prometheus (Target)
-Para que o Prometheus colete essas métricas, você precisa adicionar um job de scrape na sua configuração (prometheus.yml):
+Para que o Prometheus colete essas métricas, você precisa adicionar um job de scrape na sua configuração (`prometheus.yml`):
 
-YAML
+````YAML
 
 # ... outras configurações
 scrape_configs:
@@ -98,13 +104,15 @@ scrape_configs:
     scrape_interval: 5s 
     static_configs:
       - targets: ['localhost:8000'] # Onde o seu script Python está rodando
-Ao recarregar o Prometheus, ele começará a acessar http://localhost:8000/metrics a cada 5 segundos, armazenando os dados na sua base de séries temporais.
+````
+Ao recarregar o Prometheus, ele começará a acessar `http://localhost:8000/metrics` a cada 5 segundos, armazenando os dados na sua base de séries temporais.
 
 Resumo do Dia 21
-Fundamentos: Entendeu o Pull Model e a importância dos Exporters e Rótulos no Prometheus.
 
-Python como Exporter: Aprendeu a usar a biblioteca prometheus_client para expor métricas customizadas diretamente da sua aplicação.
+- Fundamentos: Entendeu o Pull Model e a importância dos Exporters e Rótulos no Prometheus.
 
-Tipos de Métricas: Diferenciou e implementou Counter (aumenta) e Gauge (sobe/desce).
+- Python como Exporter: Aprendeu a usar a biblioteca prometheus_client para expor métricas customizadas diretamente da sua aplicação.
+
+- Tipos de Métricas: Diferenciou e implementou Counter (aumenta) e Gauge (sobe/desce).
 
 Integração: Viu como configurar o prometheus.yml para que o Prometheus comece a coletar (scrape) os dados do seu endpoint Python.
