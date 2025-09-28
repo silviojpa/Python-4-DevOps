@@ -2,6 +2,7 @@
 As Melhores Práticas de CI/CD garantem que seu pipeline seja seguro, rápido e confiável, transformando a automação em valor de negócio.
 
 1. Testes: O Coração da Integração Contínua (CI)
+   
 A CI não é apenas construir código; é garantir que ele funcione antes de ser integrado ao tronco principal (main branch).
 
 - Shift-Left Testing (Testar Cedo): Integre testes o mais cedo possível no ciclo de desenvolvimento. Não espere a fase de QA.
@@ -40,11 +41,11 @@ A infraestrutura (servidores, redes, K8s) deve ser tratada como código.
 - Versionamento: Armazene todo o código IaC no Git, versionado e sujeito a revisões (Pull Requests), assim como o código da sua aplicação Python.
 
 Resumo do Dia 25
-Qualidade: Testes Unitários e de Integração são a primeira linha de defesa.
+- Qualidade: Testes Unitários e de Integração são a primeira linha de defesa.
 
-Segurança: Segurança (scanning, secrets) deve ser integrada e automatizada (Shift-Left DevSecOps).
+- Segurança: Segurança (scanning, secrets) deve ser integrada e automatizada (Shift-Left DevSecOps).
 
-Risco: Estratégias como Canary e Blue/Green usam a observabilidade (Métricas e Logs) para mitigar o risco de downtime na produção.
+- Risco: Estratégias como Canary e Blue/Green usam a observabilidade (Métricas e Logs) para mitigar o risco de downtime na produção.
 
 Princípio Base: A consistência é alcançada tratando tudo como código versionado (código Python, Dockerfile, Manifestos K8s, Ansible Playbooks).
 
@@ -54,12 +55,12 @@ Exercício: Configure Prometheus para monitorar uma amostra de aplicação e vis
 
 Você tem os seguintes passos:
 
-Use o app_with_metrics.py (Dia 21).
+1- Use o app_with_metrics.py (Dia 21).
 
-Configure o Prometheus (prometheus.yml) para scrapear este script (Dia 21).
+2- Configure o Prometheus (prometheus.yml) para scrapear este script (Dia 21).
 
-Instale o Grafana.
+3- Instale o Grafana.
 
-Configure uma Data Source no Grafana apontando para o Prometheus.
+4- Configure uma Data Source no Grafana apontando para o Prometheus.
 
-Crie um dashboard simples para visualizar o app_queue_size (Gauge) e o rate(app_http_requests_total[5m]) (a taxa de requisições nos últimos 5 minutos, usando PromQL).
+5- Crie um dashboard simples para visualizar o app_queue_size (Gauge) e o rate(app_http_requests_total[5m]) (a taxa de requisições nos últimos 5 minutos, usando PromQL).
