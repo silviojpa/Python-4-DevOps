@@ -1,37 +1,40 @@
 # Day-20 | Automação CI/CD com Python 🛡️
+
 CI/CD é o processo de automatizar as etapas de desenvolvimento, desde a integração do código (merge) até o deployment em produção. O Python é ideal para esta camada de orquestração porque pode interagir com todas as ferramentas envolvidas (Git, Docker, Kubernetes, ferramentas de teste).
 
 O Papel do Python no CI/CD
+
 Python pode automatizar qualquer etapa que exija lógica complexa ou integração entre sistemas:
 
-Orquestração de Build: Executar docker build (Dia 17).
+1- Orquestração de Build: Executar docker build (Dia 17).
 
-Testes e Cobertura: Rodar testes unitários e de integração.
+2- Testes e Cobertura: Rodar testes unitários e de integração.
 
-Análise de Código: Chamar ferramentas de linting ou segurança.
+3- Análise de Código: Chamar ferramentas de linting ou segurança.
 
-Deployment: Interagir com a API do Kubernetes (Dia 19) ou Ansible (Dia 18).
+4- Deployment: Interagir com a API do Kubernetes (Dia 19) ou Ansible (Dia 18).
 
 Exemplo Prático: Um Script de Deployment Completo
+
 Vamos criar um pipeline simulado onde um script Python:
 
-Builda a imagem Docker.
+    1- Builda a imagem Docker.
 
-Taggeia a imagem.
+    2- Taggeia a imagem.
 
-Pusha para um registro de imagens.
+    3- Pusha para um registro de imagens.
 
-Atualiza o Deployment no Kubernetes.
+    4- Atualiza o Deployment no Kubernetes.
 
 Pré-requisitos:
 
-docker e kubernetes instalados.
+- `docker` e `kubernetes` instalados.
 
-Acesso a um cluster K8s (Dia 19).
+- Acesso a um cluster K8s (Dia 19).
 
-Uma imagem para buildar (pode ser o Dockerfile do Dia 16).
+- Uma imagem para buildar (pode ser o `Dockerfile` do Dia 16).
 
-Python
+````Python
 
 import docker
 from kubernetes import client, config
@@ -163,10 +166,11 @@ def main_pipeline():
 
 if __name__ == "__main__":
     main_pipeline()
-
+````
 Resumo do Dia 20
-Orquestração Centralizada: Você viu como o Python serve como o ponto central para orquestrar diversas ferramentas DevOps (Docker e Kubernetes).
 
-Encadeamento Lógico: Usou funções para modularizar as etapas do pipeline e return False para implementar a lógica de fail-fast (parar em caso de erro), essencial em CI/CD.
+- Orquestração Centralizada: Você viu como o Python serve como o ponto central para orquestrar diversas ferramentas DevOps (Docker e Kubernetes).
 
-Interação com APIs: Reutilizou o conhecimento do Dia 17 (docker_client.images.build) e do Dia 19 (k8s_apps_v1.patch_namespaced_deployment) para gerenciar o ciclo de vida do software.
+- Encadeamento Lógico: Usou funções para modularizar as etapas do pipeline e return False para implementar a lógica de fail-fast (parar em caso de erro), essencial em CI/CD.
+
+- Interação com APIs: Reutilizou o conhecimento do Dia 17 (docker_client.images.build) e do Dia 19 (k8s_apps_v1.patch_namespaced_deployment) para gerenciar o ciclo de vida do software.
