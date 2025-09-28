@@ -1,4 +1,5 @@
-Dia 24 | Integração com Serviços Cloud
+Day-24 | Integração com Serviços Cloud ☁️
+
 A automação e gestão de infraestrutura na nuvem (CloudOps) são realizadas através dos SDKs (Software Development Kits) oficiais. Usaremos o AWS SDK (Boto3) como principal exemplo, já que os conceitos se aplicam a todos os outros SDKs (Azure ou Google Cloud).
 
 1. A Ferramenta Essencial: Boto3 (AWS)
@@ -8,13 +9,14 @@ Instalação e Autenticação
 Para instalar, use pip:
 
 Bash
-
+````
 pip install boto3
+````
 Para o Boto3 se conectar à sua conta, ele precisa de credenciais. As formas mais comuns e seguras de configurá-las são:
 
-AWS CLI (aws configure): Configura um perfil local de credenciais.
+1- AWS CLI (aws configure): Configura um perfil local de credenciais.
 
-Variáveis de Ambiente: Exportar AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY.
+2- Variáveis de Ambiente: Exportar `AWS_ACCESS_KEY_ID` e `AWS_SECRET_ACCESS_KEY`.
 
 Perfis de IAM: A forma mais segura para produção, onde a infraestrutura AWS gerencia o acesso (ex: Lambda ou EC2 com um Role anexado).
 
@@ -26,6 +28,7 @@ O Boto3 oferece duas interfaces principais para a interação com os serviços:
 Para automação e controle detalhado, o acesso via Clients é o mais recomendado.
 
 3. Exemplo Prático: Gerenciando Recursos AWS
+
 A. Provisionamento e Desprovisionamento de Storage (S3)
 Este exemplo demonstra o ciclo de vida completo de um recurso de storage (Bucket S3), incluindo a etapa crítica de limpeza (excluir objetos) antes de deletar o bucket.
 
