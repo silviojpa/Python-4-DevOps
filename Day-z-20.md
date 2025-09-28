@@ -1,4 +1,4 @@
-Day-20 | Automação CI/CD com Python 🛡️
+# Day-20 | Automação CI/CD com Python 🛡️
 CI/CD é o processo de automatizar as etapas de desenvolvimento, desde a integração do código (merge) até o deployment em produção. O Python é ideal para esta camada de orquestração porque pode interagir com todas as ferramentas envolvidas (Git, Docker, Kubernetes, ferramentas de teste).
 
 O Papel do Python no CI/CD
