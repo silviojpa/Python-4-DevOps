@@ -33,9 +33,10 @@ except Exception as e:
     exit(1)
 ````
 3. Gerenciando Imagens
+
 A automação envolve listar, puxar (pull) e remover imagens.
 
-Python
+````Python
 
 # --- Puxando (Pull) uma Imagem ---
 print("\n--- Puxando a Imagem Nginx ---")
@@ -67,14 +68,16 @@ except docker.errors.ImageNotFound:
 except docker.errors.APIError as e:
     # A APIError 409 geralmente significa que o contêiner está em uso
     print(f"Não foi possível remover a imagem (Pode estar em uso): {e}")
-
+````
 4. Gerenciando Contêineres
+
 Onde a automação brilha: iniciar, parar e obter logs de contêineres.
 
 A. Criando e Executando um Contêiner
+
 Vamos iniciar um contêiner Nginx e mapear a porta:
 
-Python
+````Python
 
 CONTAINER_NAME = "web-service-auto"
 
@@ -105,11 +108,12 @@ print("\n--- Contêineres Ativos ---")
 running_containers = client.containers.list()
 for cont in running_containers:
     print(f"  > {cont.name} ({cont.status})")
-
+````
 B. Parando e Removendo um Contêiner
+
 É essencial limpar recursos após o uso.
 
-Python
+````Python
 
 # --- Parando e Removendo o Contêiner ---
 print(f"\n--- Parando e Removendo o Contêiner: {CONTAINER_NAME} ---")
@@ -129,12 +133,13 @@ except docker.errors.NotFound:
     print(f"Contêiner {CONTAINER_NAME} não encontrado (já foi removido).")
 except Exception as e:
     print(f"Erro ao manipular o contêiner: {e}")
-
+````
 Resumo do Dia 17
-Conexão Programática: Você aprendeu a usar docker.from_env() para estabelecer uma conexão com o Docker Engine.
 
-API de Alto Nível: Utilizou os clientes client.images e client.containers para realizar operações Docker sem precisar chamar o CLI (docker).
+- Conexão Programática: Você aprendeu a usar docker.from_env() para estabelecer uma conexão com o Docker Engine.
 
-Operações Essenciais: Automatizou tarefas críticas de DevOps, como puxar imagens (.pull()), listar recursos (.list()), rodar contêineres com mapeamento de portas (.run()) e garantir a limpeza dos recursos (.stop(), .remove()).
+- API de Alto Nível: Utilizou os clientes `client.image`s e `client.containers` para realizar operações Docker sem precisar chamar o CLI (docker).
+
+- Operações Essenciais: Automatizou tarefas críticas de DevOps, como puxar imagens (`.pull()`), listar recursos (`.list()`), rodar contêineres com mapeamento de portas (`.run()`) e garantir a limpeza dos recursos (`.stop()`, `.remove()`).
 
 A partir daqui, qualquer fluxo de trabalho Docker pode ser incorporado e gerenciado por um script Python, tornando-o ideal para automação de testes ou implantações simples.
