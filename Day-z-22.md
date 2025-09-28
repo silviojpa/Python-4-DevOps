@@ -1,4 +1,4 @@
-Day-22 | Gerenciamento de Logs com ELK Stack 📜
+# Day-22 | Gerenciamento de Logs com ELK Stack 📜
 O ELK Stack é um acrônimo para três projetos open-source:
 
 Elasticsearch: Um motor de busca distribuído, escalável e full-text (motor de armazenamento e pesquisa).
