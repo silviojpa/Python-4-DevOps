@@ -3,15 +3,18 @@
 A automação e gestão de infraestrutura na nuvem (CloudOps) são realizadas através dos SDKs (Software Development Kits) oficiais. Usaremos o AWS SDK (Boto3) como principal exemplo, já que os conceitos se aplicam a todos os outros SDKs (Azure ou Google Cloud).
 
 1. A Ferramenta Essencial: Boto3 (AWS)
+   
 O Boto3 é a biblioteca oficial da AWS para Python. Ele permite que você interaja programaticamente com praticamente todos os serviços AWS, como EC2, S3, Lambda, e RDS.
 
 Instalação e Autenticação
 Para instalar, use pip:
 
-Bash
-````
+````Bash
+
 pip install boto3
 ````
+Pré-requisitos de Autenticação:
+
 Para o Boto3 se conectar à sua conta, ele precisa de credenciais. As formas mais comuns e seguras de configurá-las são:
 
 1- AWS CLI (aws configure): Configura um perfil local de credenciais.
@@ -32,8 +35,8 @@ Para automação e controle detalhado, o acesso via Clients é o mais recomendad
 A. Provisionamento e Desprovisionamento de Storage (S3)
 Este exemplo demonstra o ciclo de vida completo de um recurso de storage (Bucket S3), incluindo a etapa crítica de limpeza (excluir objetos) antes de deletar o bucket.
 
-Python
-````
+````Python
+
 import boto3
 from botocore.exceptions import ClientError
 import time
@@ -95,10 +98,11 @@ if __name__ == "__main__":
         clean_and_delete_s3_bucket(BUCKET_NAME)
 ````
 B. Monitoramento e Ações de CloudOps (EC2/CloudWatch)
+
 O Python também é o motor de decisão para operações de nuvem, integrando-se ao CloudWatch para monitoramento e ao EC2 para ações de gestão (como Scaling ou economia de custos).
 
-Python
-````
+````Python
+
 # Reutilizando o client AWS (EC2 e CloudWatch)
 ec2_client = boto3.client('ec2', region_name=REGION)
 cw_client = boto3.client('cloudwatch', region_name=REGION)
