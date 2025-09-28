@@ -1,4 +1,4 @@
-Day-13 | Consultas SQL com Python 🔍
+# Day-13 | Consultas SQL com Python 🔍
 No Dia 12, você aprendeu a estabelecer uma conexão com um banco de dados PostgreSQL usando a biblioteca psycopg2. No Dia 13, vamos aprofundar essa interação, focando na execução de consultas SQL para gerenciar e manipular dados dentro do banco de dados a partir do seu código Python.
 
 A execução de consultas SQL é o coração da interação com bancos de dados relacionais e é uma habilidade crucial para a automação e tarefas de DevOps que envolvem gestão de dados.
