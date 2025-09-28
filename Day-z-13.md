@@ -23,8 +23,8 @@ Abaixo estão exemplos práticos de como usar comandos SQL essenciais no Python,
 1. Preparação
 Vamos usar a conexão e a tabela `my_table` que foi criada no Dia 12.
 
-Python
-````
+````Python
+
 import psycopg2
 
 # Configurações de conexão (substitua pelos seus dados)
@@ -72,8 +72,8 @@ def execute_query(query, params=None, fetch=False):
 2. Inserindo Dados com Segurança (`INSERT`)
 Ao inserir dados, é crucial usar marcadores de posição (`%s`) e passar os valores separadamente. Isso previne ataques de SQL Injection.
 
-Python
-````
+````Python
+
 print("\n## Inserindo um novo usuário:")
 insert_sql = "INSERT INTO my_table (name, age) VALUES (%s, %s);"
 user_data = ('Alice Smith', 25)
@@ -84,8 +84,9 @@ execute_query(insert_sql, user_data)
 O comando SELECT requer a recuperação dos resultados após a execução, utilizando métodos do cursor.
 
 A. Selecionar Todos os Registros (fetchall)
-Python
-````
+
+````Python
+
 print("\n## Selecionando todos os usuários:")
 select_all_sql = "SELECT id, name, age FROM my_table;"
 users = execute_query(select_all_sql, fetch=True)
@@ -97,8 +98,8 @@ if users:
 B. Selecionar Registros Específicos com Condição (`WHERE`)
 Use o WHERE para filtrar e ainda use LIMIT para restringir o número de linhas, o que é útil em cenários de automação com grandes volumes de dados.
 
-Python
-````
+````Python
+
 print("\n## Selecionando usuário com ID = 1:")
 select_specific_sql = "SELECT name, age FROM my_table WHERE id = %s;"
 user_id_to_find = (1,) # Deve ser uma tupla, mesmo com um único elemento
@@ -112,8 +113,8 @@ else:
 4. Atualizando Dados (`UPDATE`)
 O comando UPDATE é usado para modificar dados existentes. É fundamental usar a cláusula WHERE para especificar quais linhas devem ser atualizadas.
 
-Python
-````
+````Python
+
 print("\n## Atualizando a idade de Alice Smith (id = 2):")
 update_sql = "UPDATE my_table SET age = %s WHERE name = %s;"
 update_data = (26, 'Alice Smith') # Novo valor e condição
@@ -129,8 +130,8 @@ if updated_user:
 5. Excluindo Dados (`DELETE`)
 O comando DELETE remove linhas da tabela. Cuidado: um DELETE sem a cláusula WHERE apagará todas as linhas da tabela.
 
-Python
-````
+````Python
+
 print("\n## Excluindo o usuário John Doe:")
 delete_sql = "DELETE FROM my_table WHERE name = %s;"
 user_to_delete = ('John Doe',)
