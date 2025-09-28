@@ -1,23 +1,25 @@
 # Day-15 | Integrando Python com Serviços Web 📡
 A integração com serviços web geralmente se dá através de requisições HTTP para APIs RESTful que retornam dados no formato JSON.
 
-1. A Biblioteca Essencial: requests
+1. A Biblioteca Essencial: `requests`
+
 Embora o Python tenha uma biblioteca nativa para HTTP (urllib), a comunidade DevOps prefere e utiliza massivamente a biblioteca de terceiros requests pela sua simplicidade e facilidade de uso.
 
-Se você ainda não a tem instalada, comece por aqui:
+* Se você ainda não a tem instalada, comece por aqui:
 
 Bash
-
+````
 pip install requests
+````
 2. Realizando Requisições Básicas (CRUD via HTTP)
 No REST, as operações são mapeadas para métodos HTTP. Vamos usar a API pública JSONPlaceholder para simular a interação com um serviço externo.
-
+````
 Operação	Método HTTP	Finalidade
 READ	GET	Buscar dados (e.g., ler um post).
 CREATE	POST	Enviar dados para criar um novo recurso (e.g., criar um novo post).
 UPDATE	PUT/PATCH	Modificar um recurso existente.
 DELETE	DELETE	Remover um recurso.
-
+````
 Exportar para as Planilhas
 A. READ: Buscar Dados (GET)
 O método GET é o mais comum, usado para buscar informações.
