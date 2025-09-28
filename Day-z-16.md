@@ -1,4 +1,4 @@
-Day-16 | Introdução ao Docker 🐬
+# Day-16 | Introdução ao Docker 🐬
 O Docker transformou o DevOps ao popularizar a contêinerização. Um contêiner é um pacote leve, autônomo e executável de um software, que inclui tudo o que é necessário para rodar: código, runtime, bibliotecas, variáveis de ambiente e arquivos de configuração.
 
 O objetivo deste dia é entender o conceito do Docker e como criar e rodar seu primeiro contêiner.
