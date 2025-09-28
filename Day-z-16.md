@@ -25,8 +25,8 @@ Ação: Baixe e instale o Docker Desktop a partir do site oficial do Docker, se 
 
 Após a instalação, verifique se o Docker está rodando:
 
-Bash
-````
+````Bash
+
 docker --version
 docker run hello-world
 ````
@@ -36,8 +36,8 @@ Se você ver a mensagem de boas-vindas do `hello-world`, está pronto!
    
 A forma mais rápida de usar o Docker é baixando uma imagem pronta e executando-a.
 
-Bash
-````
+````Bash
+
 # 1. Puxar a imagem (Download)
 # docker pull ubuntu:latest
 # O 'run' fará o pull automaticamente se a imagem não existir
@@ -58,8 +58,8 @@ Crie uma pasta chamada `python-app` com dois arquivos dentro:
 
 `app.py`
 
-Python
-````
+````Python
+
 import time
 print("Iniciando aplicação Python no Docker...")
 for i in range(5):
@@ -70,8 +70,8 @@ print("Aplicação finalizada.")
 
 `Dockerfile`
 
-Dockerfile
-````
+````Dockerfile
+
 # 1. Imagem base: Um ambiente leve com Python 3.10
 FROM python:3.10-slim
 
@@ -90,8 +90,8 @@ Passo 2: Construir a Imagem
 
 Navegue até a pasta `python-app` no seu terminal e execute:
 
-Bash
-````
+````Bash
+
 # -t: Tag (nome) para sua imagem
 # .: Onde está o Dockerfile (diretório atual)
 docker build -t meu-script-python .
@@ -102,8 +102,8 @@ Passo 3: Rodar o Contêiner
 
 Use a imagem que você acabou de criar para rodar um contêiner:
 
-Bash
-````
+````Bash
+
 # Roda o contêiner e executa o comando CMD (python app.py)
 docker run meu-script-python
 ````
