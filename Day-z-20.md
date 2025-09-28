@@ -18,13 +18,13 @@ Exemplo Prático: Um Script de Deployment Completo
 
 Vamos criar um pipeline simulado onde um script Python:
 
-    1- Builda a imagem Docker.
+1- Builda a imagem Docker.
 
-    2- Taggeia a imagem.
+2- Taggeia a imagem.
 
-    3- Pusha para um registro de imagens.
+3- Pusha para um registro de imagens.
 
-    4- Atualiza o Deployment no Kubernetes.
+4- Atualiza o Deployment no Kubernetes.
 
 Pré-requisitos:
 
