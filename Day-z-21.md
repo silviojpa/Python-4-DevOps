@@ -1,6 +1,4 @@
-Exatamente! Após construir e automatizar seu pipeline de CI/CD, o passo lógico é garantir que tudo está funcionando bem. O Dia 21 marca o início do ciclo de Monitoramento e Scaling, começando com a ferramenta de coleta de métricas de fato no mundo DevOps: Prometheus.
-
-Day-21 | Monitoramento com Prometheus 📊
+# Day-21 | Monitoramento com Prometheus 📊
 O Prometheus é um sistema open-source de monitoramento e alertas. Ele coleta e armazena métricas como séries temporais, ou seja, as métricas são acompanhadas do timestamp em que foram gravadas e de pares chave-valor chamados rótulos (labels).
 
 1. Conceitos Fundamentais
