@@ -1,12 +1,14 @@
 # Day-17 | Automação Docker com Python 🚀
-A biblioteca oficial e recomendada para interagir com a API do Docker a partir do Python é a docker-py (ou, simplesmente, docker).
+
+A biblioteca oficial e recomendada para interagir com a API do Docker a partir do Python é a `docker-py` (ou, simplesmente, `docker`).
 
 1. Instalação e Conexão
 Primeiro, instale a biblioteca:
 
 Bash
-
+````
 pip install docker
+````
 A biblioteca se comunica com o Docker Engine (Daemon) do seu sistema. Se você estiver usando o Docker Desktop, a conexão geralmente é automática.
 
 2. Conectando e Verificando o Docker Engine
