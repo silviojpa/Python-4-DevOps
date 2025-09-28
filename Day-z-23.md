@@ -1,4 +1,4 @@
-Day-23 | Estratégias de Scaling de Infraestrutura ⚙️
+#Day-23 | Estratégias de Scaling de Infraestrutura ⚙️
 O scaling refere-se à capacidade de uma aplicação e sua infraestrutura de lidar com o aumento da carga de trabalho. Existem duas abordagens principais, e a escolha afeta diretamente a automação:
 
 1. Scaling Vertical (Scale Up) vs. Horizontal (Scale Out)
