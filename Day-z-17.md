@@ -5,8 +5,7 @@ A biblioteca oficial e recomendada para interagir com a API do Docker a partir d
 1. Instalação e Conexão
 Primeiro, instale a biblioteca:
 
-Bash
-````
+````Bash
 pip install docker
 ````
 A biblioteca se comunica com o Docker Engine (Daemon) do seu sistema. Se você estiver usando o Docker Desktop, a conexão geralmente é automática.
