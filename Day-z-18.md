@@ -1,40 +1,45 @@
 # Day-18 | Ansible e Python ⚙️
+
 1. O que é Ansible?
+
 O Ansible é uma ferramenta agentless (sem agente) que automatiza provisionamento de software, gerenciamento de configuração e implantação de aplicativos.
 
-Agentless: Ele se conecta aos servidores remotos via SSH (ou WinRM) e executa os comandos neles. Não há software cliente para instalar.
+- Agentless: Ele se conecta aos servidores remotos via SSH (ou WinRM) e executa os comandos neles. Não há software cliente para instalar.
 
-Playbooks: Arquivos YAML que descrevem o estado desejado dos seus sistemas.
+- Playbooks: Arquivos YAML que descrevem o estado desejado dos seus sistemas.
 
 2. A Integração Natural
+
 O Python é usado no Ansible de duas maneiras principais:
 
-Módulos Ansible: Quase todos os módulos do Ansible (como apt, yum, shell, docker_container) são escritos em Python.
+1- Módulos Ansible: Quase todos os módulos do Ansible (como `apt`, `yum`, `shell`, `docker_container`) são escritos em Python.
 
-Scripts de Automação: Python é excelente para gerar inventários dinâmicos ou executar o próprio Ansible.
+2- Scripts de Automação: Python é excelente para gerar inventários dinâmicos ou executar o próprio Ansible.
 
 Para este dia, vamos focar em usar Python para chamar e orquestrar o Ansible (Método 2).
 
-3. Usando subprocess para Rodar Playbooks
-O método mais simples e robusto para usar o Ansible a partir do Python é chamar os comandos da CLI (ansible-playbook) usando a biblioteca padrão subprocess. Isso permite que seu script Python execute o playbook e capture o resultado.
+3. Usando `subprocess` para Rodar Playbooks
+   
+O método mais simples e robusto para usar o Ansible a partir do Python é chamar os comandos da CLI (`ansible-playbook`) usando a biblioteca padrão `subprocess`. Isso permite que seu script Python execute o playbook e capture o resultado.
 
 Pré-requisitos:
 
-Ansible instalado no seu sistema (pip install ansible).
+1- Ansible instalado no seu sistema (pip install ansible).
 
-Crie um arquivo de inventário e um playbook simples:
+2- Crie um arquivo de inventário e um playbook simples:
 
-inventory.ini
+`inventory.ini`
 
-Ini, TOML
+````Ini, TOML
 
 [webservers]
 localhost ansible_connection=local
 # Ou use um servidor real: 
 # prod_server ansible_host=192.168.1.10
-simple_check.yml
+````
+`simple_check.yml`
 
-YAML
+````YAML
 
 ---
 - name: Verifica a conectividade basica
@@ -47,9 +52,10 @@ YAML
     - name: Exibe o resultado
       debug:
         msg: "Uptime em {{ inventory_hostname }}: {{ uptime_result.stdout }}"
-Script Python (run_ansible.py):
+````
+Script Python (`run_ansible.py`):
 
-Python
+````Python
 
 import subprocess
 import json
@@ -91,14 +97,16 @@ def run_ansible_playbook(playbook, inventory):
 # Chamada principal
 if run_ansible_playbook(PLAYBOOK_FILE, INVENTORY_FILE):
     print("\nOrquestração Ansible concluída com sucesso pelo Python.")
+````
 4. Inventário Dinâmico com Python
+   
 Uma das integrações mais poderosas é usar Python para gerar o inventário em tempo de execução. Isso é crucial quando sua infraestrutura é gerenciada por serviços de Cloud (AWS, Azure, Google Cloud) ou sistemas de virtualização, onde os IPs mudam constantemente.
 
 O Ansible pode receber um script Python como inventário, desde que ele retorne dados no formato JSON específico.
 
-Script Python para Inventário (dynamic_inventory.py):
+Script Python para Inventário (`dynamic_inventory.py`):
 
-Python
+````Python
 
 #!/usr/bin/env python3
 # Este script deve ser executado pelo Ansible
@@ -145,20 +153,23 @@ if __name__ == '__main__':
         print(json.dumps({})) # Retorna um objeto vazio
     else:
         # Padrão para quando o Ansible chama sem argumentos
-        get_inventory() 
+        get_inventory()
+````
 Como o Ansible usa isso:
 
-Torne o script executável (chmod +x dynamic_inventory.py).
+1- Torne o script executável (`chmod +x dynamic_inventory.py`).
 
-Execute o Ansible usando o script como inventário:
+2- Execute o Ansible usando o script como inventário:
 
-Bash
+````Bash
 
 ansible all -i dynamic_inventory.py --list-hosts
 # Você verá a lista de hosts gerada pelo seu script Python!
+````
 Resumo do Dia 18
-Orquestração via subprocess: Você aprendeu a disparar playbooks e capturar o feedback usando a biblioteca padrão subprocess.
 
-Inventário Dinâmico: Entendeu o formato JSON necessário e a lógica por trás de um script Python para gerar um inventário em tempo de execução.
+- Orquestração via subprocess: Você aprendeu a disparar playbooks e capturar o feedback usando a biblioteca padrão subprocess.
+
+- Inventário Dinâmico: Entendeu o formato JSON necessário e a lógica por trás de um script Python para gerar um inventário em tempo de execução.
 
 Essa integração permite que seus scripts Python tomem decisões de alto nível (por exemplo, "Se a métrica X cair, execute o playbook de recuperação Y") e usem o poder do Ansible para realizar a ação na infraestrutura.
