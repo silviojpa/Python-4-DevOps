@@ -7,8 +7,8 @@ Embora o Python tenha uma biblioteca nativa para HTTP (urllib), a comunidade Dev
 
 * Se você ainda não a tem instalada, comece por aqui:
 
-Bash
-````
+````Bash
+
 pip install requests
 ````
 2. Realizando Requisições Básicas (CRUD via HTTP)
@@ -19,8 +19,8 @@ No REST, as operações são mapeadas para métodos HTTP. Vamos usar a API públ
 A. READ: Buscar Dados (`GET`)
 O método GET é o mais comum, usado para buscar informações.
 
-Python
-````
+````Python
+
 import requests
 
 BASE_URL = "https://jsonplaceholder.typicode.com/posts"
@@ -51,8 +51,8 @@ except requests.exceptions.RequestException as e:
 B. CREATE: Criar um Recurso (`POST`)
 O método POST é usado para enviar novos dados ao servidor.
 
-Python
-````
+````Python
+
 print("\n--- 2. Criando um novo post (POST) ---")
 new_post_data = {
     "title": "Automatizando com Python",
@@ -73,8 +73,8 @@ else:
 C. UPDATE: Atualizar um Recurso (`PUT`/`PATCH`)
 Vamos atualizar o post recém-criado (assumindo que o ID seja, por exemplo, 101, já que o JSONPlaceholder simula a criação).
 
-Python
-````
+````Python
+
 # Vamos tentar atualizar o post de ID 1 (exemplo)
 POST_ID = 1 
 UPDATE_URL = f"{BASE_URL}/{POST_ID}"
@@ -98,8 +98,8 @@ else:
 3. Usando Headers e Autenticação
 Em cenários reais de DevOps, você quase sempre precisará enviar headers (cabeçalhos) para informar o tipo de conteúdo ou fornecer tokens de autenticação (chaves API, tokens JWT).
 
-Python
-````
+````Python
+
 print("\n--- 4. Requisição com Headers (Simulando Autenticação) ---")
 
 # Simulando um token de autenticação
