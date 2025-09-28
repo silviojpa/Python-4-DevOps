@@ -1,19 +1,24 @@
 # Day-19 | Kubernetes e Python 🚢
+
 1. O Cliente Python para Kubernetes
+   
 A maneira oficial de interagir com a API do Kubernetes a partir do Python é usando a biblioteca Kubernetes Python Client. Ela permite que você execute qualquer operação que faria com kubectl, mas diretamente do seu código.
 
 Instalação:
 
-Bash
+````Bash
 
 pip install kubernetes
+````
 Pré-requisitos:
-Você precisa ter acesso a um cluster K8s (pode ser um cluster local como o Minikube ou o cluster do Docker Desktop) e um arquivo de configuração válido (~/.kube/config). O cliente Python usará este arquivo automaticamente.
+
+Você precisa ter acesso a um cluster K8s (pode ser um cluster local como o Minikube ou o cluster do Docker Desktop) e um arquivo de configuração válido (`~/.kube/config`). O cliente Python usará este arquivo automaticamente.
 
 2. Conexão e Configuração
+   
 Você deve carregar a configuração do cluster antes de interagir com ele.
 
-Python
+````Python
 
 from kubernetes import client, config
 
@@ -38,10 +43,12 @@ load_kube_config()
 v1 = client.CoreV1Api()
 # Cria a API Apps (para gerenciar Deployments, StatefulSets, DaemonSets)
 apps_v1 = client.AppsV1Api()
+````
 3. Operações de Leitura (Monitoramento)
+   
 A primeira etapa da automação DevOps é a leitura de status e o monitoramento.
 
-Python
+````Python
 
 # --- Listando Pods no Namespace 'default' ---
 print("\n--- Pods Ativos no Namespace 'default' ---")
@@ -64,13 +71,16 @@ for node in node_list.items:
     # Obtém a condição de 'Ready' do Node
     ready_status = next((c.status for c in node.status.conditions if c.type == "Ready"), "Unknown")
     print(f"  > Node: {node.metadata.name}, Status Ready: {ready_status}")
+````
 4. Operações de Escrita (Deployment e Escala)
+   
 A automação de deployment e a mudança de escala (scaling) são tarefas comuns de SRE/DevOps.
 
 A. Criando um Deployment
+
 Você define o manifest (definição YAML) como um dicionário Python e o envia para a API.
 
-Python
+````Python
 
 DEPLOYMENT_NAME = "python-auto-nginx"
 
@@ -111,10 +121,12 @@ except client.ApiException as e:
         print(f"Deployment '{DEPLOYMENT_NAME}' já existe.")
     else:
         print(f"Erro ao criar Deployment: {e}")
+````
 B. Alterando a Escala (Scaling)
+
 Vamos aumentar o número de réplicas de 1 para 3.
 
-Python
+````Python
 
 NEW_REPLICAS = 3
 
@@ -133,13 +145,15 @@ try:
     print(f"Escala do Deployment '{DEPLOYMENT_NAME}' alterada para {NEW_REPLICAS} réplicas.")
 except client.ApiException as e:
     print(f"Erro ao escalar Deployment: {e}")
+````
 Resumo do Dia 19
-Cliente Oficial: Você aprendeu a usar a biblioteca kubernetes para automatizar tarefas.
 
-Configuração: Dominou o carregamento de configurações com config.load_kube_config().
+- Cliente Oficial: Você aprendeu a usar a biblioteca kubernetes para automatizar tarefas.
 
-APIs: Entendeu a diferença entre as APIs Core (client.CoreV1Api()) e Apps (client.AppsV1Api()).
+- Configuração: Dominou o carregamento de configurações com config.load_kube_config().
 
-Automação de Cluster: Praticou o monitoramento (listing Pods/Nodes) e a manipulação de recursos (creating e scaling Deployments) usando objetos e métodos Python.
+- APIs: Entendeu a diferença entre as APIs Core (client.CoreV1Api()) e Apps (client.AppsV1Api()).
+
+- Automação de Cluster: Praticou o monitoramento (listing Pods/Nodes) e a manipulação de recursos (creating e scaling Deployments) usando objetos e métodos Python.
 
 A partir daqui, você pode construir painéis de monitoramento personalizados, scripts de recuperação automática (autorepair) e pipelines de CI/CD que gerenciam todo o ciclo de vida da aplicação no K8s.
