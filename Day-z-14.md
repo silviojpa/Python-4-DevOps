@@ -14,8 +14,8 @@ O SQLAlchemy se encarrega de traduzir o código Python para o SQL apropriado.
 1. Instalação e Configuração
 Você precisará do SQLAlchemy e do driver de PostgreSQL que já estava usando (`psycopg2-binary` é uma alternativa comum se o `psycopg2` puro tiver problemas de compilação, mas se o psycopg2 do Dia 12 funcionou, mantenha-o, ou use o binário para simplificar):
 
-Bash 
-````
+````Bash 
+
 pip install sqlalchemy
 # Se precisar, use: pip install psycopg2-binary
 ````
@@ -31,8 +31,8 @@ O SQLAlchemy é dividido em três partes principais para esta abordagem:
 3. Criando a Conexão e o Modelo de Dados
 Vamos replicar a tabela `my_table` dos dias anteriores usando um modelo Python:
 
-Python
-````
+````Python
+
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base
 
@@ -77,8 +77,8 @@ Session = sessionmaker(bind=engine)
 4. Operações CRUD com ORM
 Agora, com o modelo `User` e a `Session` prontos, podemos realizar operações CRUD (Create, Read, Update, Delete) de forma totalmente orientada a objetos.
 
-Python
-````
+````Python
+
 # Cria uma instância de sessão para a transação
 session = Session()
 
