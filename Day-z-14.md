@@ -1,36 +1,38 @@
 # Day-14 | ORM com SQLAlchemy 🐍
 O que é ORM?
-ORM (Object-Relational Mapping) é uma técnica de programação que converte dados entre sistemas de tipos incompatíveis (como a classe User no Python) e bancos de dados relacionais (como uma tabela users no PostgreSQL).
+
+ORM (Object-Relational Mapping) é uma técnica de programação que converte dados entre sistemas de tipos incompatíveis (como a classe `User` no Python) e bancos de dados relacionais (como uma tabela `users` no PostgreSQL).
 
 Em vez de escrever código SQL como:
-INSERT INTO users (name, age) VALUES ('Maria', 35);
+`INSERT INTO users (name, age) VALUES ('Maria', 35);`
 
 Você escreverá código Python como:
-session.add(User(name='Maria', age=35))
+`session.add(User(name='Maria', age=35))`
 
 O SQLAlchemy se encarrega de traduzir o código Python para o SQL apropriado.
 
 1. Instalação e Configuração
-Você precisará do SQLAlchemy e do driver de PostgreSQL que já estava usando (psycopg2-binary é uma alternativa comum se o psycopg2 puro tiver problemas de compilação, mas se o psycopg2 do Dia 12 funcionou, mantenha-o, ou use o binário para simplificar):
+Você precisará do SQLAlchemy e do driver de PostgreSQL que já estava usando (`psycopg2-binary` é uma alternativa comum se o `psycopg2` puro tiver problemas de compilação, mas se o psycopg2 do Dia 12 funcionou, mantenha-o, ou use o binário para simplificar):
 
-Bash
-
+Bash 
+````
 pip install sqlalchemy
 # Se precisar, use: pip install psycopg2-binary
+````
 2. Elementos Principais do SQLAlchemy
 O SQLAlchemy é dividido em três partes principais para esta abordagem:
 
-Engine (Motor): O ponto de partida. Ele estabelece a conexão com o banco de dados.
+1- Engine (Motor): O ponto de partida. Ele estabelece a conexão com o banco de dados.
 
-Base (Declaração Base): Usada para definir as classes do seu modelo (as tabelas).
+2- Base (Declaração Base): Usada para definir as classes do seu modelo (as tabelas).
 
-Session (Sessão): O objeto de conversação. É a interface primária para interagir com o banco de dados (o seu "tradutor" de Python para SQL).
+3- Session (Sessão): O objeto de conversação. É a interface primária para interagir com o banco de dados (o seu "tradutor" de Python para SQL).
 
 3. Criando a Conexão e o Modelo de Dados
-Vamos replicar a tabela my_table dos dias anteriores usando um modelo Python:
+Vamos replicar a tabela `my_table` dos dias anteriores usando um modelo Python:
 
 Python
-
+````
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base
 
@@ -71,11 +73,12 @@ Base.metadata.create_all(engine)
 # 4. Configuração da Sessão
 # Cria uma classe de Sessão que será usada para interagir com o BD
 Session = sessionmaker(bind=engine)
+````
 4. Operações CRUD com ORM
-Agora, com o modelo User e a Session prontos, podemos realizar operações CRUD (Create, Read, Update, Delete) de forma totalmente orientada a objetos.
+Agora, com o modelo `User` e a `Session` prontos, podemos realizar operações CRUD (Create, Read, Update, Delete) de forma totalmente orientada a objetos.
 
 Python
-
+````
 # Cria uma instância de sessão para a transação
 session = Session()
 
@@ -145,11 +148,12 @@ print(f"Total de usuários restantes: {len(remaining_users)}")
 
 # Fecha a sessão
 session.close()
+````
 Resumo do Dia 14
-ORM e SQLAlchemy: Você começou a usar um ORM para interagir com o banco de dados usando objetos Python, o que é mais intuitivo e menos propenso a erros de sintaxe SQL.
+- ORM e SQLAlchemy: Você começou a usar um ORM para interagir com o banco de dados usando objetos Python, o que é mais intuitivo e menos propenso a erros de sintaxe SQL.
 
-Componentes-Chave: Dominou o uso do Engine (conexão), Base (modelagem) e Session (interação/transações).
+- Componentes-Chave: Dominou o uso do Engine (conexão), Base (modelagem) e Session (interação/transações).
 
-Modelagem Declarativa: Aprendeu a mapear classes Python (User) para tabelas de banco de dados (__tablename__) usando Column para definir os atributos.
+- Modelagem Declarativa: Aprendeu a mapear classes Python (User) para tabelas de banco de dados (__tablename__) usando Column para definir os atributos.
 
-CRUD Pythonico: Realizou as operações básicas de banco de dados (CREATE, READ, UPDATE, DELETE) usando métodos do objeto session.query(User) sem escrever uma linha de SQL.
+- CRUD Pythonico: Realizou as operações básicas de banco de dados (CREATE, READ, UPDATE, DELETE) usando métodos do objeto session.query(User) sem escrever uma linha de SQL.
