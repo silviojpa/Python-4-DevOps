@@ -13,7 +13,7 @@ A biblioteca se comunica com o Docker Engine (Daemon) do seu sistema. Se você e
 2. Conectando e Verificando o Docker Engine
 Você começa criando um cliente que se conecta ao seu Docker local.
 
-Python
+````Python
 
 import docker
 
@@ -31,6 +31,7 @@ except Exception as e:
     print(f"Erro ao conectar ao Docker Engine: {e}")
     # Finaliza se não puder conectar
     exit(1)
+````
 3. Gerenciando Imagens
 A automação envolve listar, puxar (pull) e remover imagens.
 
