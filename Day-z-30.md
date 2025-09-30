@@ -4,7 +4,7 @@ O objetivo do Dia 30 não é apenas mostrar que o código roda, mas explicar o p
 
 Sua apresentação deve ter uma estrutura clara, focando na visão geral, na demonstração e, o mais importante, nas lições aprendidas (Cultura DevOps).
 
-1. Estrutura da Apresentação (15-20 Minutos)
+1- Estrutura da Apresentação (15-20 Minutos)
    
 A. Introdução e Visão Geral (5 Minutos)
 O Problema (Dia 27/28): Comece definindo o desafio. Ex: "O problema é implantar e monitorar um microsserviço Python de forma confiável e repetível."
